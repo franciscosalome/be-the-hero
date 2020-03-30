@@ -1,0 +1,70 @@
+Descrição dos programas utilizados{
+    Visual Studio Code: É o editor de código que possui um compilador
+
+    Node: Framework necessário para funcionar o servidor (instalado via chocolatey)
+
+    chocolatey: Ferramenta para instalação dos programas diretamente do PowerShell
+
+    nodemon: Framework para reiniciar automaticamente o servidor
+
+    Express: Framework para auxiliar a criação das rotas do API
+
+    NPM: Instalador de pacotes do Node
+
+    NPX: Parecido com NPM porém ao invés de instalar apenas executa
+
+    Knex: Query builder, auxilia a criação de querys para utilizar banco de dados
+
+    CORS: Módulo de segurança, determina quem vai poder acessar nossa aplicação [npm install cors]
+}
+Listagem dos comandos utilizados no terminal do VScode{
+    npm start: comando configurado no arquivo package.json na parte de scripts que roda o comando 'nodemon src/index.js'
+    npx [...]: comando para executar um Framework, por exemplo npx knex: cria o arquivo knexfile.js que configura o banco de dados
+
+}
+
+Descrição dos arquivos e pastas do projeto{
+    Criados pelo usuário{
+        index.js: arquivo principal da aplicação;
+
+        routes.js: arquivo para armazenar as rotas da api;
+
+        [pasta]database: armazena os arquivos de banco de dados e conexões{
+            [pasta]migrations: os arquivos aqui dentro são gerados automaticamente quando se executa o comando 'npx knex migrate:make <nome da migration>
+            connections.js: armazena as instruções de conexão com o banco de dados
+        }
+        [pasta]controllers: armazena os métodos de controle, por exemplo o método para inserir uma nova ong, buscar, etc..
+    
+    }
+    Criados automaticamente{
+        knexfile.js: arquivo que armazena todos os parametros de do banco de dados
+        package-lock.json: arquivo que serve apenas para referenciar todas as dependencias
+        package.json: arquivo onde se configura comandos(scripts) e lista as dependencias diretas
+    }
+
+}
+Migrations{
+    serevm para armazenar o historico de criacao, exclusao e tudo que se refere aos banco de dados
+    olhar documentação do knex: knexjs.org
+
+    métodos{
+        npx knex migrate:make <nome da migration>
+            dentro da migration você deve especificar os nomes da tabela e das colunas a serem criadas
+
+        npx knex migrate:latest
+            atualiza as tabelas conforme a ultima versão do arquivo criado pelo comando acima
+    
+        npx knex migrate:rollback
+            volta a versão anterior, antes de rodar o comando ascima
+
+        npx knex migrate:status
+            ve todasas migrations já executadas
+    }
+}
+Pacotes auxiliares{
+    Express: auxilia a criação de rotas da API 
+        const express = require('express')
+
+    crypto: serve para criar id automatica de forma aleatória neste sistema. A principal função na verdade é criptografar. Vem junto com o node:
+        const crypto = require('crypto')
+}
